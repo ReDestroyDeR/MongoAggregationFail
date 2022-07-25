@@ -82,13 +82,13 @@ public interface MyModelContainerRepository extends MongoRepository<MyModelConta
             "    {" +
                     "        $lookup: {" +
                     "            from: \"models\"," +
-                    "            let: { containerId: \"$_id\" }," +
+                    "            let: { contId: \"$_id\" }," +
                     "            pipeline: [" +
                     "                {$match: {" +
                     "                    $expr: {" +
                     "                        $and: [" +
                     "                            {" +
-                    "                                $eq: [ \"containerId\", \"$$containerId\" ]" +
+                    "                                $eq: [ \"$containerId\", \"$$contId\" ]" +
                     "                            }," +
                     "                            {" +
                     "                                $eq: [ \"$status\", ?1 ]" +
@@ -109,7 +109,7 @@ public interface MyModelContainerRepository extends MongoRepository<MyModelConta
                     "            \"groupId\": 1," +
                     "            \"counter\": {" +
                     "                $cond: {" +
-                    "                    if: {$eq: [ \"$counter\", [ ] ]}," + // WE FAIL HERE
+                    "                    if: {$eq: [ \"$counter\", [ ] ]}," + // FIXME: WE FAIL HERE ON 2.3.3.RELEASE
                     "                    then: [0]," +
                     "                    else: {" +
                     "                        $map: {" +

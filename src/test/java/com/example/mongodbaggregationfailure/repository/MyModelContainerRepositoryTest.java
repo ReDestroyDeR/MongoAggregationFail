@@ -24,8 +24,7 @@ class MyModelContainerRepositoryTest {
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
-//        registry.add("spring.data.mongodb.uri", container::getReplicaSetUrl);
-        registry.add("spring.data.mongodb.uri", () -> "mongodb://localhost:27017/local");
+        registry.add("spring.data.mongodb.uri", container::getReplicaSetUrl);
     }
 
     @Autowired
